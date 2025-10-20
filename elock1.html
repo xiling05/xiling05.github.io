@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Selix eclock</title>
+        <script>
+        
+            var startTime = new Date();
+            var ratePerMinute = 0.5; 
+        
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            var time = h + ":" + m + ":" + s;
+        </script>
+    </head>
+    <body>
+        <h1>The starting time:</h1>
+        <h2><script>document.write(time);</script></h2>
+        <h1>The current time is:</h1>
+        <h2 id="current-time"><script>document.write(time);</script></h2>
+        <img src="xisheep.jpg" alt="xisheep" width="200">
+        <script>
+            function updateTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                var time = h + ":" + m + ":" + s;
+                
+        
+                var timeDiff = today - startTime;
+                
+                
+                var seconds = Math.floor(timeDiff / 1000);
+                var minutes = Math.floor(seconds / 60);
+                var hours = Math.floor(minutes / 60);
+                
+                
+                var diffDisplay = hours + "时" + (minutes % 60) + "分" + (seconds % 60) + "秒";
+                
+            
+                var totalMinutes = Math.ceil(timeDiff / (1000 * 60));
+                var cost = totalMinutes * ratePerMinute;
+                
+    
+                document.getElementById("current-time").innerHTML = 
+                    time + "<br>已运行: " + diffDisplay + 
+                    "<br>累计费用: " + cost.toFixed(2) + "元 (费率:" + ratePerMinute + "元/分钟)";
+            }
+
+            setInterval(updateTime, 5000);
+
+            var img = document.querySelector("img");
+            document.addEventListener("mousemove", function(event){
+                img.style.position = "absolute";
+                img.style.left = event.pageX + 20 + "px";
+                img.style.top = event.pageY + "px";
+            });
+        </script>
+    </body>
+</html>
