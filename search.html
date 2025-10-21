@@ -3,51 +3,83 @@
     <head>
         <title>Selix Search</title>
         <style>
-            div .container {
-                text-align: center;
-                top: 39.2%;
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            div {
+                box-sizing: border-box;
+            }
+            #d0, #d1, #d2 {  
                 width: 100%;
+                position: relative;
+            }
+            #d00, #d01, #d10 {
                 position: absolute;
             }
-
-            #submit {
-                width: 120px;
-                height: 30px;
-                margin-top: 20px;
+            #d0 {
+                justify-content: center;
+                height: 60px;
+            }
+            #d00 {
+                left: 2px;
+            }
+            #d01 {
+                right: 2px;
+            }
+            #d1 {
+                height: 290px;
                 text-align: center;
-                border-radius: 10px;
             }
-            
-            #field {
-                width: 650px;
-                height: 45px;
-                border-radius: 20px;
+            #d10 {
+                bottom: 20px;
+                font-family:Arial, Helvetica, sans-serif;
+                font-size: 32px;
+                color: aqua;
+                width: 100%;
             }
-
-            p h1 {
-               color:aqua;
+            h1 {
+                text-align: center;
+                width: 100%;
             }
-            
-            body {
-                padding: 0;
-                margin: 0;
+            #d2 {
+                height: 180px;
+                text-align: center;
             }
         </style>
     </head>
     <body>
-        <div style="border:1px solid blue;">
-            <div style="padding-top:100px; text-align:center; border:1px solid red; z-index: -1;">
-                <img src="xisheep.jpg" alt="xisheep" width="200">
-                <p><h1>Selix</h1></p>
+        <div id="d0">
+            <header>
+                <div id="d00">
+                    <img src="xisheep.jpg" alt="xisheep">
+                </div>
+                <div id="d01">
+                    <nav>
+                        <a href="">picture</a>
+                        <a href="">advanced</a>
+                    </nav>
+                </div>
+            </header>
+        </div>
+        <div id="d1">
+            <div id="d10">
+                <h1>Selix</h1>
             </div>
-            <div class="container" style="border:1px solid orange;">
-                <form action="https://www.google.com/search" style="border: 1px solid black;">
-                    <div style="border:1px solid black;">
-                        <input id="field" type="text" name="q">
-                    </div>
-                        <br>
-                        <input id="submit" type="submit" value="Google Search">
-                    
+        </div>
+        <div id="d2">
+            <div>
+                <form>
+                    <input>
+                    <input>
+                </form>
+            </div>
+            <div>
+                bar
+            </div>
+            <div>
+                <form>
+                    <input>
                 </form>
             </div>
         </div>
