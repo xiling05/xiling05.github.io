@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周杰伦 - 华语乐坛三巨头</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../images/logo.png" alt="音乐网站logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="zhoujielun.html" class="active">周杰伦</a></li>
+                    <li><a href="linjunjie.html">林俊杰</a></li>
+                    <li><a href="sunyanzi.html">孙燕姿</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <article class="singer-page">
+        <div class="singer-header">
+            <img src="../images/img001.jpg" alt="周杰伦">
+            <div class="singer-info">
+                <h2>周杰伦（Jay Chou）</h2>
+                <p>1979年1月18日出生于中国台湾新北市，华语流行乐男歌手、音乐人、演员、导演、编剧、监制、商人。</p>
+                <p>代表作：《七里香》《青花瓷》《双截棍》《晴天》《以父之名》《夜曲》等</p>
+                <p>成就：多次获得金曲奖，被媒体称为"亚洲天王"，其音乐融合中国风、R&B、嘻哈等多种风格，影响了一代华语乐坛。</p>
+            </div>
+        </div>
+
+        <section class="works-section">
+            <h3>代表专辑/歌曲</h3>
+            <div class="works-list">
+                <div class="work-item">
+                    <img src="../images/img004.jpg" alt="七里香">
+                    <h4>七里香</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img005.jpg" alt="青花瓷">
+                    <h4>青花瓷</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img006.jpg" alt="晴天">
+                    <h4>晴天</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img007.jpg" alt="以父之名">
+                    <h4>以父之名</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img008.jpg" alt="夜曲">
+                    <h4>夜曲</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img009.jpg" alt="双截棍">
+                    <h4>双截棍</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="player-section">
+            <h3>热门歌曲试听</h3>
+            <!-- 主播放器（可见） -->
+            <audio id="main-player" class="audio-player" controls>
+                <source src="../music/m01.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+            <p id="current-play" style="margin-top: 10px; color: #666;">当前播放：周杰伦 - 晴天</p>
+            
+            <!-- 完整歌曲列表（6首） -->
+            <div class="song-list" style="margin-top: 20px;">
+                <h4 style="margin-bottom: 10px; color: #333;">歌曲列表</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li class="song-item active" data-src="../music/m01.flac" data-name="晴天">
+                        <span>1. 晴天</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m07.flac" data-name="七里香">
+                        <span>2. 七里香</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m08.flac" data-name="青花瓷">
+                        <span>3. 青花瓷</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m09.flac" data-name="夜曲">
+                        <span>4. 夜曲</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m15.flac" data-name="以父之名">
+                        <span>5. 以父之名</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m16.flac" data-name="双截棍">
+                        <span>6. 双截棍</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <p>学号：202425910111</p>
+            <p>姓名：林文硕</p>
+            <p>《Web开发基础》课程设计 · 2025年</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <!-- 歌曲播放控制脚本 -->
+    <script>
+        const mainPlayer = document.getElementById('main-player');
+        const currentPlayText = document.getElementById('current-play');
+        const songItems = document.querySelectorAll('.song-item');
+        
+        songItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const songSrc = this.getAttribute('data-src');
+                const songName = this.getAttribute('data-name');
+                
+                mainPlayer.src = songSrc;
+                mainPlayer.play();
+                
+                currentPlayText.textContent = `当前播放：周杰伦 - ${songName}`;
+                
+                songItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        mainPlayer.addEventListener('play', function() {
+            const currentSrc = this.src;
+            songItems.forEach(item => {
+                if (item.getAttribute('data-src') === currentSrc) {
+                    songItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    const songName = item.getAttribute('data-name');
+                    currentPlayText.textContent = `当前播放：周杰伦 - ${songName}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

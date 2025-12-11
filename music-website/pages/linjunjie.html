@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林俊杰 - 华语乐坛三巨头</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../images/logo.png" alt="音乐网站logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="zhoujielun.html">周杰伦</a></li>
+                    <li><a href="linjunjie.html" class="active">林俊杰</a></li>
+                    <li><a href="sunyanzi.html">孙燕姿</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <article class="singer-page">
+        <div class="singer-header">
+            <img src="../images/img002.jpg" alt="林俊杰">
+            <div class="singer-info">
+                <h2>林俊杰（JJ Lin）</h2>
+                <p>1981年3月27日出生于新加坡，华语流行乐男歌手、音乐人、演员、潮牌主理人。</p>
+                <p>代表作：《江南》《小酒窝》《一千年以后》《修炼爱情》《不为谁而作的歌》《可惜没如果》等</p>
+                <p>成就：多次获得金曲奖最佳国语男歌手，以稳定的现场唱功被誉为"行走的CD"，音乐风格涵盖流行、R&B、抒情等。</p>
+            </div>
+        </div>
+
+        <section class="works-section">
+            <h3>代表专辑/歌曲</h3>
+            <div class="works-list">
+                <div class="work-item">
+                    <img src="../images/img010.jpg" alt="江南">
+                    <h4>江南</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img011.jpg" alt="修炼爱情">
+                    <h4>修炼爱情</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img012.jpg" alt="一千年以后">
+                    <h4>一千年以后</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img013.jpg" alt="不为谁而作的歌">
+                    <h4>不为谁而作的歌</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img014.jpg" alt="小酒窝">
+                    <h4>小酒窝</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img015.jpg" alt="可惜没如果">
+                    <h4>可惜没如果</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="player-section">
+            <h3>热门歌曲试听</h3>
+            <!-- 主播放器（可见） -->
+            <audio id="main-player" class="audio-player" controls>
+                <source src="../music/m02.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+            <p id="current-play" style="margin-top: 10px; color: #666;">当前播放：林俊杰 - 江南</p>
+            
+            <!-- 完整歌曲列表（6首） -->
+            <div class="song-list" style="margin-top: 20px;">
+                <h4 style="margin-bottom: 10px; color: #333;">歌曲列表</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li class="song-item active" data-src="../music/m02.mp3" data-name="江南">
+                        <span>1. 江南</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m04.flac" data-name="修炼爱情">
+                        <span>2. 修炼爱情</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m05.mp3" data-name="一千年以后">
+                        <span>3. 一千年以后</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m06.mp3" data-name="不为谁而作的歌">
+                        <span>4. 不为谁而作的歌</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m13.mp3" data-name="小酒窝">
+                        <span>5. 小酒窝</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m14.flac" data-name="可惜没如果">
+                        <span>6. 可惜没如果</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <p>学号：202425910111</p>
+            <p>姓名：林文硕</p>
+            <p>《Web开发基础》课程设计 · 2025年</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <!-- 歌曲播放控制脚本 -->
+    <script>
+        // 获取元素
+        const mainPlayer = document.getElementById('main-player');
+        const currentPlayText = document.getElementById('current-play');
+        const songItems = document.querySelectorAll('.song-item');
+        
+        // 为每首歌添加点击事件
+        songItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // 获取歌曲信息
+                const songSrc = this.getAttribute('data-src');
+                const songName = this.getAttribute('data-name');
+                
+                // 更新播放器源并播放
+                mainPlayer.src = songSrc;
+                mainPlayer.play();
+                
+                // 更新当前播放文本
+                currentPlayText.textContent = `当前播放：林俊杰 - ${songName}`;
+                
+                // 更新选中样式
+                songItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // 监听播放器自带的播放事件（兼容直接点击播放器控制的情况）
+        mainPlayer.addEventListener('play', function() {
+            const currentSrc = this.src;
+            songItems.forEach(item => {
+                if (item.getAttribute('data-src') === currentSrc) {
+                    songItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    const songName = item.getAttribute('data-name');
+                    currentPlayText.textContent = `当前播放：林俊杰 - ${songName}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

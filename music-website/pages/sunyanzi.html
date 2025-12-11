@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>孙燕姿 - 华语乐坛三巨头</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../images/logo.png" alt="音乐网站logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="zhoujielun.html">周杰伦</a></li>
+                    <li><a href="linjunjie.html">林俊杰</a></li>
+                    <li><a href="sunyanzi.html" class="active">孙燕姿</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <article class="singer-page">
+        <div class="singer-header">
+            <img src="../images/img003.jpg" alt="孙燕姿">
+            <div class="singer-info">
+                <h2>孙燕姿（Stefanie Sun）</h2>
+                <p>1978年7月23日出生于新加坡，华语流行乐女歌手、演员。</p>
+                <p>代表作：《天黑黑》《开始懂了》《绿光》《克卜勒》《我怀念的》《逆光》等</p>
+                <p>成就：获得多个金曲奖、新加坡金曲奖，被誉为"华语天后"，以清澈治愈的嗓音和独特的音乐风格深受观众喜爱。</p>
+            </div>
+        </div>
+
+        <section class="works-section">
+            <h3>代表专辑/歌曲</h3>
+            <div class="works-list">
+                <div class="work-item">
+                    <img src="../images/img016.jpg" alt="天黑黑">
+                    <h4>天黑黑</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img017.jpg" alt="逆光">
+                    <h4>逆光</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img018.jpg" alt="我怀念的">
+                    <h4>我怀念的</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img019.jpg" alt="绿光">
+                    <h4>绿光</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img020.jpg" alt="克卜勒">
+                    <h4>克卜勒</h4>
+                </div>
+                <div class="work-item">
+                    <img src="../images/img021.jpg" alt="开始懂了">
+                    <h4>开始懂了</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="player-section">
+            <h3>热门歌曲试听</h3>
+            <!-- 主播放器（可见） -->
+            <audio id="main-player" class="audio-player" controls>
+                <source src="../music/m03.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+            <p id="current-play" style="margin-top: 10px; color: #666;">当前播放：孙燕姿 - 逆光</p>
+            
+            <!-- 完整歌曲列表（6首） -->
+            <div class="song-list" style="margin-top: 20px;">
+                <h4 style="margin-bottom: 10px; color: #333;">歌曲列表</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li class="song-item active" data-src="../music/m03.mp3" data-name="逆光">
+                        <span>1. 逆光</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m10.mp3" data-name="我怀念的">
+                        <span>2. 我怀念的</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m11.mp3" data-name="天黑黑">
+                        <span>3. 天黑黑</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m12.mp3" data-name="绿光">
+                        <span>4. 绿光</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m17.mp3" data-name="克卜勒">
+                        <span>5. 克卜勒</span>
+                    </li>
+                    <li class="song-item" data-src="../music/m18.mp3" data-name="开始懂了">
+                        <span>6. 开始懂了</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <p>学号：202425910111</p>
+            <p>姓名：林文硕</p>
+            <p>《Web开发基础》课程设计 · 2025年</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <!-- 歌曲播放控制脚本 -->
+    <script>
+        const mainPlayer = document.getElementById('main-player');
+        const currentPlayText = document.getElementById('current-play');
+        const songItems = document.querySelectorAll('.song-item');
+        
+        songItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const songSrc = this.getAttribute('data-src');
+                const songName = this.getAttribute('data-name');
+                
+                mainPlayer.src = songSrc;
+                mainPlayer.play();
+                
+                currentPlayText.textContent = `当前播放：孙燕姿 - ${songName}`;
+                
+                songItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        mainPlayer.addEventListener('play', function() {
+            const currentSrc = this.src;
+            songItems.forEach(item => {
+                if (item.getAttribute('data-src') === currentSrc) {
+                    songItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    const songName = item.getAttribute('data-name');
+                    currentPlayText.textContent = `当前播放：孙燕姿 - ${songName}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
